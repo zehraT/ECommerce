@@ -11,23 +11,24 @@ namespace ECommerce.Controllers
 {
     public class HomeController : Controller
     {
-        /// <summary>
-        /// test
-        /// </summary>
-        /// <returns></returns>
         public IActionResult Index()
         {
-            using (ECommerceContext eCommerceContext=new ECommerceContext())
-            {
-                List<User> users = eCommerceContext.Users.Include(a=>a.Addresses).ToList();
-                List<Address> addresses=eCommerceContext.Addresses.Include(a=>a.User).ToList();
+            ViewData["Title"] = "Hoş Geldiniz";
 
 
-            }
             return View();
         }
 
        
+        public IActionResult Help()
+        {
+            ViewData["Title"] = "Yardım Masası";
+            return View();
 
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }
