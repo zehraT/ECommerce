@@ -1,0 +1,21 @@
+﻿
+@{ List<Catogory> catogories = new List<Catogory>();
+    using (ECommerceContext eCommerceContext = new ECommerceContext())
+    {
+        catogories = eCommerceContext.Categories.ToList();
+    }
+}
+
+<h2>menu test</h2>
+
+
+<p>
+    @{
+        foreach (Catogory catogory in catogories)
+        {
+            <span><a href="@Url.Action("Index", "Catogory", new { id=catogory.Id})">@catogory.Name</a></span> <text>|</text>
+        }
+
+    }
+
+</p>
