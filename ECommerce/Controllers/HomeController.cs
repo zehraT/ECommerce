@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ECommerce.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
@@ -13,21 +6,19 @@ namespace ECommerce.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "Hoş Geldiniz";
-
-
+            ViewData["Title"] = "HOŞGELDİNİZ!";
             return View();
         }
 
-       
         public IActionResult Help()
         {
-            ViewData["Title"] = "Yardım Masası";
+            ViewData["Title"] = "Yardım Masası!";
             return View();
-
         }
+
         public IActionResult Contact()
         {
+            ViewData["Title"] = "İletişim!";
             return View();
         }
     }

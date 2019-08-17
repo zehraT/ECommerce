@@ -1,16 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] - Test1</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
     <script src="~/js/ECommerce.js"></script>
 </head>
 <body>
-    <h1>Siteya hosgeldin</h1>
+    <h1>Siteme geldiniz!</h1>
     @RenderBody()
-    
-  <a href="@Url.Action("Contact","Home")"><h2> İletişim için Tıklayınız</h2></a>
+    <h3><a href="@Url.Action("Contact","Home")">İletişim için tıklayın</a></h3>
 </body>
 </html>

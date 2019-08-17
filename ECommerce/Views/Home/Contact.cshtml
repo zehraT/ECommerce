@@ -1,6 +1,11 @@
-﻿<h1> İletişim Bilgileri</h1>
-<p>
+﻿@model List<Category>
 
-    0530 545 45 45
-</p><br />
-        <a href="@Url.Action("index","Home")">Ana sayfaya Git</a>
+@{await Html.RenderPartialAsync("_Partial_Categories");}
+
+<strong>İsim:</strong> <input id="Name" />
+<br />
+<strong>Soyisim:</strong> <input id="Surname" />
+<br />
+<strong>Mesajınız:</strong> <textarea id="Message"></textarea>
+<br/>
+<input type="button" value="Gönder" onclick="ECommerce.Page.Contact.Send();"/>

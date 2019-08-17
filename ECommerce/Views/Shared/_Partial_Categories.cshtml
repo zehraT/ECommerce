@@ -1,21 +1,16 @@
-﻿
-@{ List<Catogory> catogories = new List<Catogory>();
+﻿@{ 
+    List<Category> categories = new List<Category>();
+
     using (ECommerceContext eCommerceContext = new ECommerceContext())
     {
-        catogories = eCommerceContext.Categories.ToList();
+        categories = eCommerceContext.Categories.ToList();
     }
 }
-
-<h2>menu test</h2>
-
-
 <p>
     @{
-        foreach (Catogory catogory in catogories)
+        foreach (Category category in categories)
         {
-            <span><a href="@Url.Action("Index", "Catogory", new { id=catogory.Id})">@catogory.Name</a></span> <text>|</text>
+            <span><a href="@Url.Action("Index", "Category", new { id = category.Id })">@category.Name</a></span> <text>|</text>
         }
-
     }
-
 </p>
