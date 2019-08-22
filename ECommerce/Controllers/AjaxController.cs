@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ECommerce.DTO;
 using ECommerce.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Controllers
 {
@@ -42,43 +43,31 @@ namespace ECommerce.Controllers
 
     public class AjaxMethod
     {
+        private static readonly Adapter.ProductAdapter productAdapter=new Adapter.ProductAdapter();
         public void SaveContact(string json)
         {
             DTO.ContactSaveDto contactSave = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ContactSaveDto>(json);
 
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
+            Models.Contact contact = new Models.Contact()
             {
-                eCommerceContext.Contacts.Add(new Models.Contact()
-                {
-                    Name = contactSave.Name,
-                    Surname = contactSave.Surname,
-                    Message = contactSave.Message
+                Name = contactSave.Name,
+                Surname = contactSave.Surname,
+                Message = contactSave.Message
 
-                });
+            };
 
-                eCommerceContext.SaveChanges();
-            }
+            contact = productAdapter.Insert<Models.Contact>(contact);
         }
 
 
         public bool RemoveProduct(string json)
         {
-            bool result = false;
+            bool result = true;
 
             DTO.ProductRemoveDto productRemove = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductRemoveDto>(json);
 
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
-            {
-                Models.Product product = eCommerceContext.Products.SingleOrDefault(a => a.Id == productRemove.ProductId);
-
-                if (product != null)
-                {
-                    eCommerceContext.Products.Remove(product);
-                    eCommerceContext.SaveChanges();
-                    result = true;
-                }
-            }
-
+            productAdapter.Delete<Models.Product>(productRemove.ProductId);
+            
             return result;
         }
 
@@ -86,31 +75,26 @@ namespace ECommerce.Controllers
         {
             DTO.ProductSaveDto productSave = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductSaveDto>(json);
 
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
+            Models.Product product=new Models.Product()
             {
-                eCommerceContext.Products.Add(new Models.Product()
-                {
-                    Name = productSave.ProductName,
-                    Description = productSave.ProductDescription,
-                    StateId = (int)Enums.State.Active,
-                    CategoryId = productSave.CategoryId,
-                    CreateDate = DateTime.UtcNow,
+                Name = productSave.ProductName,
+                Description = productSave.ProductDescription,
+                StateId = (int)Enums.State.Active,
+                CategoryId = productSave.CategoryId,
+                CreateDate = DateTime.UtcNow,
 
-                });
+            };
 
-                eCommerceContext.SaveChanges();
-            }
+            product = productAdapter.Insert<Models.Product>(product);
+
         }
 
         public List<Models.Product> ProductsByCategoryId(string json)
         {
             List<Models.Product> result = new List<Models.Product>();
             DTO.ProductsByCategoryId productsByCategoryId = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductsByCategoryId>(json);
-
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
-            {
-                result = eCommerceContext.Products.Where(a => a.CategoryId == productsByCategoryId.CategoryId).ToList();
-            }
+            IQueryable<Product> products= productAdapter.Get<Models.Product>();
+            result = products.Include(a => a.Category).Where(a => a.CategoryId == productsByCategoryId.CategoryId).ToList();
 
             return result;
         }
