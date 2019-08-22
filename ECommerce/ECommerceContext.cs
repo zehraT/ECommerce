@@ -13,7 +13,7 @@ namespace ECommerce
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
             //DB BAĞLANTISI VB DATABASE INSTANCE'INI İLGİLENDİREN İNCE AYARLAR
-            dbContextOptionsBuilder.UseSqlServer("Server=127.0.0.1;Database=ECommerce;User Id=sa;Password=123;");
+            dbContextOptionsBuilder.UseSqlServer("Server=BIS-1014896201;Database=ECommerce;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

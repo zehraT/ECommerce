@@ -2,7 +2,7 @@
 
 namespace ECommerce.Migrations
 {
-    public partial class addmigrationUnit : Migration
+    public partial class firs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

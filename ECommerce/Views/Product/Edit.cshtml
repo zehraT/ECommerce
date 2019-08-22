@@ -1,0 +1,18 @@
+﻿@model ProductEditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Güncelleme</h2>
+
+<form asp-controller="Product" asp-action="Edit" method="post">
+    @*burada nesne özelliklerini html nesnelerine bind ediyoruz asp-for  ile*@
+    <b>Ürün adı:</b> <input asp-for="Product.Name" class="form-control"/>
+    <b>Açıklama:</b><input asp-for="Product.Description" class="form-control"/>
+    <b>Kategory:</b>
+    @*burada kategorileri bir combobax içerisine dolduruyoruuz*@
+    <select asp-for="Product.CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="form-control"></select>
+    @*product id sini gizli olarak sayfaya gömüyoruz id ye göre update atacağız*@
+    <input type="hidden" asp-for="Product.Id" class="form-control"/>
+    <input type="submit" value="Güncelle" class="btn btn-success" />
+</form>

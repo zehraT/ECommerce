@@ -1,0 +1,7 @@
+﻿@model Product;
+@{await Html.RenderPartialAsync("_Partial_Categories");}
+
+<strong>Ürün Adı:</strong> @Model.Name <br />
+<strong>Açıklama:</strong> @Model.Description
+@*burada ürünü güncelleme sayfası için link oluşturuyoruz, Edit Action/metot adı, product controller adı, id ise alacağı parametre*@
+<a href="@Url.Action("Edit","Product",new { @id=Model.Id})">Ürünü Güncelle</a> 

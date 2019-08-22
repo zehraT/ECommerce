@@ -60,7 +60,7 @@
                     var product = data.dynamic[i];
                     var productName = product.name;
 
-                    html += "- <a href='/urun/" + product.id +"'>" + productName + "<input type='button' value='Sil' onclick='ECommerce.Page.Category.Remove(" + product.id + ")' /><br />";
+                    html += "- <a href='/urun/" + product.id + "'>" + productName + "</a> <input type='button' value='Sil' onclick='ECommerce.Page.Category.Remove(" + product.id + ")' /><br />";
                 }
 
                 $("#Holder-Products").html(html);

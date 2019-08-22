@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    [Migration("20190727123109_Product_3")]
-    partial class Product_3
+    [Migration("20190727123049_Product_2")]
+    partial class Product_2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace ECommerce.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("ECommerce.Models.Catogory", b =>
+            modelBuilder.Entity("ECommerce.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,9 +60,9 @@ namespace ECommerce.Migrations
                     b.ToTable("Categories");
 
                     b.HasData(
-                        new { Id = 1, Description = "Ev elektiriğine dair herşey.", Name = "Elektronik" },
-                        new { Id = 2, Description = "Ev elektiriğine dair herşey.", Name = "Beyaz Eşya" },
-                        new { Id = 3, Description = "Gardropunuzu Biz dolduralım.", Name = "Tekstil" }
+                        new { Id = 1, Description = "Ev elektriğine dair herşey.", Name = "Elektronik" },
+                        new { Id = 2, Description = "Mutfak elektroniği.", Name = "Beyaz Eşya" },
+                        new { Id = 3, Description = "Gardropunuzu biz dolduruyoruz.", Name = "Tekstil" }
                     );
                 });
 
@@ -72,7 +72,7 @@ namespace ECommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CatogoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("CreateDate");
 
@@ -87,7 +87,7 @@ namespace ECommerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CatogoryId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("StateId");
 
@@ -119,7 +119,6 @@ namespace ECommerce.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("EMail")
-                        .IsRequired()
                         .HasMaxLength(150);
 
                     b.Property<string>("Name")
@@ -146,7 +145,7 @@ namespace ECommerce.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("ECommerce.Models.Catogory", b =>
+            modelBuilder.Entity("ECommerce.Models.Category", b =>
                 {
                     b.HasOne("ECommerce.Models.State", "State")
                         .WithMany()
@@ -155,9 +154,9 @@ namespace ECommerce.Migrations
 
             modelBuilder.Entity("ECommerce.Models.Product", b =>
                 {
-                    b.HasOne("ECommerce.Models.Catogory", "Catogory")
+                    b.HasOne("ECommerce.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CatogoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ECommerce.Models.State", "State")

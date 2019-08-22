@@ -2,10 +2,11 @@
 
 @{await Html.RenderPartialAsync("_Partial_Categories");}
 
-<strong>İsim:</strong> <input id="Name" />
+<strong>İsim:</strong> <input id="Name" class="form-control" />
 <br />
-<strong>Soyisim:</strong> <input id="Surname" />
+<strong>Soyisim:</strong> <input id="Surname" class="form-control" />
 <br />
-<strong>Mesajınız:</strong> <textarea id="Message"></textarea>
-<br/>
-<input type="button" value="Gönder" onclick="ECommerce.Page.Contact.Send();"/>
+<strong>Mesajınız:</strong> <textarea id="Message" class="form-control"></textarea>
+<br />
+<input type="button" value="Gönder" class="btn btn-success" onclick="ECommerce.Page.Contact.Send();" />
+
