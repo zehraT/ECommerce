@@ -1,4 +1,5 @@
-﻿using ECommerce.Models;
+﻿
+using ECommerce.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace ECommerce.Controllers
         {
             Category category = new Category();
 
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext = new ECommerce.Data.ECommerceContext())
             {
                 category = eCommerceContext.Categories.SingleOrDefault(a => a.Id == id);
             }

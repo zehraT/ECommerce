@@ -1,19 +1,30 @@
 ﻿using System.Linq;
+using ECommerce.Data.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
     public class ProductController : Controller
     {
+        private IProductRepository _productRepository;
+
+        public ProductController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         [Route("/urun/{id}")]
         public IActionResult Index(int id)
         {
-            Models.Product product;
 
-            using (ECommerceContext eCommerceContext = new ECommerceContext())
-            {
-                product = eCommerceContext.Products.SingleOrDefault(a => a.Id == id);
-            }
+            Data.Models.Product product = _productRepository.Find(id);
+
+            //Data.Models.Product product;
+
+            //using (ECommerce.Data.ECommerceContext eCommerceContext = new ECommerce.Data.ECommerceContext())
+            //{
+            //    product = eCommerceContext.Products.SingleOrDefault(a => a.Id == id);
+            //}
 
             return View(product);
         }
@@ -21,13 +32,13 @@ namespace ECommerce.Controllers
         public IActionResult Edit(int id)
         {
             //burada ürünün kategorsini de değiştirebilmek için yeni bir class oluşturup içerisine kategorileri göndereceğiz
-            Models.ProductEditViewModel model;
-            using (ECommerceContext context = new ECommerceContext())
+            Data.Models.ProductEditViewModel model;
+            using (ECommerce.Data.ECommerceContext context = new ECommerce.Data.ECommerceContext())
             {
-                model = new Models.ProductEditViewModel
+                model = new Data.Models.ProductEditViewModel
                 {
-                    Product = context.Products.SingleOrDefault(x => x.Id == id),
-                    Categories = context.Categories.ToList()
+                    //Product = context.Products.SingleOrDefault(x => x.Id == id),
+                    //Categories = context.Categories.ToList()
                 };
             }
             return View(model);
@@ -35,11 +46,11 @@ namespace ECommerce.Controllers
 
         //Get işlemleri için cevap vermez sadece post işlemleri çalışır
         [HttpPost]
-        public IActionResult Edit(Models.Product product)
+        public IActionResult Edit(Data.Models.Product product)
         {
-            using (ECommerceContext context = new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext context = new ECommerce.Data.ECommerceContext())
             {
-                Models.Product updatedProduct = context.Products.SingleOrDefault(x => x.Id == product.Id);
+                Data.Models.Product updatedProduct = context.Products.SingleOrDefault(x => x.Id == product.Id);
                 if (updatedProduct != null)
                 {
                     updatedProduct.Name = product.Name;

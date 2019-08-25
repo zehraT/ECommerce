@@ -1,4 +1,5 @@
-﻿using ECommerce.Interface;
+﻿
+using ECommerce.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ECommerce.Adapter
         public void Delete<T>(int id) where T : class
         {
             T model = Find<T>(id);
-            using (ECommerceContext eCommerceContext =new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext =new ECommerce.Data.ECommerceContext())
             {
                 eCommerceContext.Set<T>().Remove(model);
                 eCommerceContext.SaveChanges();
@@ -21,7 +22,7 @@ namespace ECommerce.Adapter
         public T Find<T>(int id) where T : class
         {
             T product;
-            using (ECommerceContext eCommerceContext=new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext=new ECommerce.Data.ECommerceContext())
             {
                 product = eCommerceContext.Set<T>().Find(id);
             }
@@ -31,7 +32,7 @@ namespace ECommerce.Adapter
         public IQueryable<T> Get<T>() where T : class
         {
             IQueryable<T> models;
-            using (ECommerceContext eCommerceContext=new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext=new ECommerce.Data.ECommerceContext())
             {
                 models = eCommerceContext.Set<T>();
 
@@ -41,7 +42,7 @@ namespace ECommerce.Adapter
 
         public T Insert<T>(T model) where T : class
         {
-            using (ECommerceContext eCommerceContext =new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext =new ECommerce.Data.ECommerceContext())
             {
                 eCommerceContext.Set<T>().Add(model);
                 eCommerceContext.SaveChanges();
@@ -51,7 +52,7 @@ namespace ECommerce.Adapter
 
         public T Update<T>(T model) where T : class
         {
-            using (ECommerceContext eCommerceContext=new ECommerceContext())
+            using (ECommerce.Data.ECommerceContext eCommerceContext=new ECommerce.Data.ECommerceContext())
             {
                 eCommerceContext.Set<T>().Update(model);
                 eCommerceContext.SaveChanges();

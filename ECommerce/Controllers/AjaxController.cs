@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ECommerce.DTO;
-using ECommerce.Models;
+using ECommerce.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Controllers
@@ -48,7 +48,7 @@ namespace ECommerce.Controllers
         {
             DTO.ContactSaveDto contactSave = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ContactSaveDto>(json);
 
-            Models.Contact contact = new Models.Contact()
+            Data.Models.Contact contact = new Data.Models.Contact()
             {
                 Name = contactSave.Name,
                 Surname = contactSave.Surname,
@@ -56,7 +56,7 @@ namespace ECommerce.Controllers
 
             };
 
-            contact = productAdapter.Insert<Models.Contact>(contact);
+            contact = productAdapter.Insert<Data.Models.Contact>(contact);
         }
 
 
@@ -66,7 +66,7 @@ namespace ECommerce.Controllers
 
             DTO.ProductRemoveDto productRemove = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductRemoveDto>(json);
 
-            productAdapter.Delete<Models.Product>(productRemove.ProductId);
+            productAdapter.Delete<Data.Models.Product>(productRemove.ProductId);
             
             return result;
         }
@@ -75,7 +75,7 @@ namespace ECommerce.Controllers
         {
             DTO.ProductSaveDto productSave = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductSaveDto>(json);
 
-            Models.Product product=new Models.Product()
+            Data.Models.Product product=new Data.Models.Product()
             {
                 Name = productSave.ProductName,
                 Description = productSave.ProductDescription,
@@ -85,15 +85,15 @@ namespace ECommerce.Controllers
 
             };
 
-            product = productAdapter.Insert<Models.Product>(product);
+            product = productAdapter.Insert<Data.Models.Product>(product);
 
         }
 
-        public List<Models.Product> ProductsByCategoryId(string json)
+        public List<Data.Models.Product> ProductsByCategoryId(string json)
         {
-            List<Models.Product> result = new List<Models.Product>();
+            List<Data.Models.Product> result = new List<Data.Models.Product>();
             DTO.ProductsByCategoryId productsByCategoryId = Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductsByCategoryId>(json);
-            IQueryable<Product> products= productAdapter.Get<Models.Product>();
+            IQueryable<Product> products= productAdapter.Get<Data.Models.Product>();
             result = products.Include(a => a.Category).Where(a => a.CategoryId == productsByCategoryId.CategoryId).ToList();
 
             return result;
