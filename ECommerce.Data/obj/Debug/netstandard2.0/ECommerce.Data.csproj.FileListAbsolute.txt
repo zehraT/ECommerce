@@ -1,0 +1,8 @@
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\bin\Debug\netstandard2.0\ECommerce.Data.deps.json
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\bin\Debug\netstandard2.0\ECommerce.Data.dll
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\bin\Debug\netstandard2.0\ECommerce.Data.pdb
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\obj\Debug\netstandard2.0\ECommerce.Data.csproj.CoreCompileInputs.cache
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\obj\Debug\netstandard2.0\ECommerce.Data.AssemblyInfoInputs.cache
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\obj\Debug\netstandard2.0\ECommerce.Data.AssemblyInfo.cs
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\obj\Debug\netstandard2.0\ECommerce.Data.dll
+C:\Users\bilge.adam\Desktop\ECommerce\trunk\ECommerce.Data\obj\Debug\netstandard2.0\ECommerce.Data.pdb
